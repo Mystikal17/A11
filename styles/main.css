@@ -1,0 +1,216 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    background: white;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    border: 3px solid #931420;
+    background-color: #fffded;
+}
+
+/* HEADER – mobile first */
+header {
+    text-align: center;
+    padding: 1.5em 0 2em 0;
+    border-bottom: 3px solid #931420;
+    background: linear-gradient(
+            30deg, #f6bb73 0%, #f6bb73 30%, white 50%, #f6bb73 80%, #f6bb73 100%
+    );
+}
+header img {
+    display: none; /* mobile first */
+}
+header h2 {
+    font-size: 175%;
+    color: #800000;
+}
+header h3 {
+    font-size: 130%;
+    font-style: italic;
+}
+.shadow {
+    text-shadow: 2px 2px 2px #800000;
+}
+
+/* NAV MENU – mobile first */
+nav {
+    position: relative;
+}
+#menu_toggle {
+    display: none; /* hide checkbox */
+}
+.menu-btn {
+    font-size: 32px;
+    cursor: pointer;
+    padding: 10px;
+    display: block;
+    background: #800000;
+    color: white;
+    text-align: center;
+}
+
+/* hamburger / X toggle */
+.menu-btn::before {
+    content: "\2630";  /* ☰ hamburger */
+}
+#menu_toggle:checked + .menu-btn::before {
+    content: "\2716";  /* ✖ X */
+}
+
+/* hidden menu on small screens */
+.menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    width: 40%;
+    background: #800000;
+    list-style: none;
+}
+#menu_toggle:checked ~ .menu {
+    display: block;
+}
+.menu li a {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+/* submenu mobile */
+.submenu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    background: #931420;
+}
+.submenu li a::after {
+    content: " ▶";
+}
+
+/* MAIN LAYOUT – MOBILE FIRST */
+main {
+    display: flex;
+    flex-direction: column-reverse; /* section first */
+}
+section {
+    padding: 20px;
+    border-bottom: 3px solid #931420;
+}
+aside {
+    padding: 20px;
+}
+
+/* ARTICLE */
+article {
+    padding: .5em 0;
+    border-top: 2px solid #800000;
+    border-bottom: 2px solid #800000;
+}
+article img {
+    float: right;
+    margin: .5em 0 1em 1em;
+    border: 1px solid black;
+}
+
+/* FOOTER */
+footer {
+    background: #931420;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+}
+
+/* ============================================================
+   MEDIA QUERY #1 — Content column layout breakpoint (aside left)
+   ============================================================ */
+@media (min-width: 700px) {
+    main {
+        flex-direction: row;
+    }
+    aside {
+        flex-basis: 35%;
+        order: 0;  /* aside first on the left */
+    }
+    section {
+        flex-basis: 65%;
+        border-bottom: none; /* remove mobile border */
+        order: 1;  /* section second on the right */
+    }
+}
+
+/* ============================================================
+   MEDIA QUERY #2 — Navigation horizontal desktop menu
+   ============================================================ */
+@media (min-width: 650px) {
+
+    .menu-btn {
+        display: none;
+    }
+
+    .menu {
+        display: flex;
+        position: relative;
+        width: 100%;
+    }
+
+    .menu li {
+        position: relative;
+    }
+
+    .menu li a {
+        width: 160px;
+        padding: 1em 0;
+        text-align: center;
+        font-weight: bold;
+        background: #800000;
+        color: white;
+        margin: 0; /* menu borders adjustment */
+    }
+
+    /* submenu desktop */
+    .submenu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 160px;
+        background: #931420;
+    }
+    .menu li:hover > .submenu {
+        display: block;
+    }
+    .submenu li a::after {
+        content: " ▼"; /* down arrow */
+        margin: 2px; /* submenu margins */
+    }
+
+    /* first and last menu item borders/margins */
+    .menu li:first-child a {
+        margin-left: 0;
+    }
+    .menu li:last-child a {
+        margin-right: 0;
+    }
+}
+
+/* ============================================================
+   MEDIA QUERY #3 — Header logo breakpoint
+   ============================================================ */
+@media (min-width: 600px) {
+    header {
+        text-align: left;
+    }
+    header img {
+        display: block;
+        float: left;
+        padding: 0 30px;
+    }
+}
